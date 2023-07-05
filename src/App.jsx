@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import "./app.css";
 
 export default function App() {
   const [advice, setAdvice] = useState("Advice here.");
@@ -7,7 +8,7 @@ export default function App() {
   const [count, setCount] = useState(0); // counter start from 0
 
   async function getAdvice() {
-    // For Firefox only because of API caching system:
+    // For Firefox only because of Firefox-API caching system (doesn't update data) :
     const timestamp = Date.now(); // Generate a unique value
     const response = await fetch(
       `https://api.adviceslip.com/advice?timestamp=${timestamp}`
@@ -29,7 +30,12 @@ export default function App() {
   return (
     <div>
       <h1>{advice}</h1>
-      <button onClick={getAdvice} style={{ fontWeight: "bold" }}>
+
+      <button
+        className="btn"
+        onClick={getAdvice}
+        style={{ fontWeight: "bold" }}
+      >
         New advice
       </button>
       <Message count={count} />
@@ -46,42 +52,3 @@ function Message(props) {
     </p>
   );
 }
-
-/*
-Code below to be ignored
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-
-function App() {
-  const [count, setCount] = useState(0)
-
-  return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
-
-export default App
-*/
