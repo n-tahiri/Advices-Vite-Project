@@ -31,7 +31,6 @@ export default function App() {
   }
 
   useEffect(() => getAdvice, []); //To load content at first start, you need that [] so it doesn't run indefinitely
-  console.log("This:", history);
 
   return (
     <>
